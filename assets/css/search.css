@@ -1,0 +1,111 @@
+*,*::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-weight: lighter;
+}
+
+:root {
+    --pricolor: #f7f7f7;
+    --basecolor: #ffffff;
+    --textcolor: rgb(39, 39, 39);
+    --tercolor: rgba(103, 141, 103, 0.583);
+}
+
+body {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: var(--pricolor);
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 800px;
+    height: 400px;
+    background-color: var(--basecolor);
+}
+
+.search-area {
+    background-color: var(--pricolor);
+    padding: .1em 0 .1em .2em;
+    margin: 0;
+    display: flex;
+    height: 27px;
+    border-radius: 1px;
+    position: relative;
+    width: 18em;
+    height: 2.5em;
+}
+
+.search-area::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--tercolor);
+    opacity: 0.6;
+
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 650ms cubic-bezier(.18,.89,.32,1.05);
+
+}
+
+.search-area:focus-within::after {
+    transform: scaleX(.92);
+    transform-origin: left;
+}
+
+.search-area:focus-within {
+    border-top-right-radius: 100vh;
+    border-bottom-right-radius: 100vh;
+}
+
+.search-area:focus-within .search-button {
+    background: var(--tercolor);
+    border-radius: 100vh;
+    color: var(--basecolor);
+}
+
+.search-area:focus-within .search-button:hover {
+    box-shadow: 0 0 2px rgb(133, 133, 133);
+}
+
+.search-bar {
+    flex-grow: 1;
+    outline: none;
+    border: none;
+    font-size: .7rem;
+    color: rgb(99, 99, 99);
+    font-weight: lighter;
+    padding: 0 .6em;
+    background: transparent;
+}
+
+.search-bar::placeholder {
+    color: var(--textcolor);
+    font-weight: lighter;
+    font-size: .6rem;
+    opacity: 0.6;
+}
+
+.search-button {
+    cursor: pointer;
+    background: transparent;
+    width: 3em;
+    height: 3em;
+    padding: 0 .4em;
+    position: relative;
+    top: -1.3px;
+    border: 0;
+    outline: none;
+    color: var(--textcolor);
+    transition: all 300ms ease-in;
+}
